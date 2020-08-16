@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as React from "react";
+import { loadTheme } from "office-ui-fabric-react";
+import Layout from "./Components/layout";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+loadTheme({
+  palette: {
+    themePrimary: "#8ad4d0",
+    themeLighterAlt: "#fafdfd",
+    themeLighter: "#eaf8f7",
+    themeLight: "#d9f2f1",
+    themeTertiary: "#b5e5e3",
+    themeSecondary: "#96d9d6",
+    themeDarkAlt: "#7cbebb",
+    themeDark: "#69a19e",
+    themeDarker: "#4d7774",
+    neutralLighterAlt: "#faf9f8",
+    neutralLighter: "#f3f2f1",
+    neutralLight: "#edebe9",
+    neutralQuaternaryAlt: "#e1dfdd",
+    neutralQuaternary: "#d0d0d0",
+    neutralTertiaryAlt: "#c8c6c4",
+    neutralTertiary: "#a19f9d",
+    neutralSecondary: "#605e5c",
+    neutralPrimaryAlt: "#3b3a39",
+    neutralPrimary: "#323130",
+    neutralDark: "#201f1e",
+    black: "#000000",
+    white: "#ffffff",
+  },
+  defaultFontStyle: {
+    fontSize: "x-large",
+  },
+});
+
+class App extends React.Component {
+  render() {
+    return <Layout></Layout>;
+  }
 }
 
 export default App;
