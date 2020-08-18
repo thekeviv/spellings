@@ -2,10 +2,12 @@ import React from "react";
 import {
   AnimationClassNames,
   mergeStyles,
-  PrimaryButton,
   Stack,
   getTheme,
+  ScrollablePane,
+  Text,
 } from "office-ui-fabric-react";
+import { Icon } from "office-ui-fabric-react/lib/Icon";
 import { Layer } from "office-ui-fabric-react/lib/Layer";
 
 class Layout extends React.Component {
@@ -16,23 +18,30 @@ class Layout extends React.Component {
       {
         backgroundColor: theme.palette.themePrimary,
         color: theme.palette.white,
-        lineHeight: "50px",
-        padding: "0 20px",
+        lineHeight: "70px",
+        padding: "0 40px",
+        textAlign: "center",
+        marginBottom: 15,
       },
       AnimationClassNames.scaleUpIn100,
     ]);
   }
   render() {
-    var content = <div className={this.contentClass}>Hello world</div>;
+    var header = (
+      <div className={this.contentClass}>
+        <Icon iconName="TextBox" style={{ color: getTheme().palette.white }} />
+        <Text variant="xxLarge">{"  Spellings! "}</Text>
+      </div>
+    );
     return (
-      <Stack>
-        <Layer>
-          <div>
-            {content}
-            <PrimaryButton text="primary"></PrimaryButton>
-          </div>
-        </Layer>
-      </Stack>
+      <Layer>
+        <ScrollablePane>
+          {header}
+          <Stack tokens={{ childrenGap: 10 }} horizontalAlign="center">
+            {this.props.children}
+          </Stack>
+        </ScrollablePane>
+      </Layer>
     );
   }
 }

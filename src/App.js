@@ -1,6 +1,8 @@
 import * as React from "react";
 import { loadTheme } from "office-ui-fabric-react";
-import Layout from "./Components/layout";
+import { Route } from "react-router-dom";
+import Main from "./Pages/main";
+import Game from "./Pages/game";
 
 loadTheme({
   palette: {
@@ -34,7 +36,12 @@ loadTheme({
 
 class App extends React.Component {
   render() {
-    return <Layout></Layout>;
+    return (
+      <div className="app">
+        <Route path="/game" render={() => <Game />} />
+        <Route exact path="/" render={() => <Main />} />
+      </div>
+    );
   }
 }
 
