@@ -71,55 +71,60 @@ const Main = () => {
   };
   return (
     <Layout>
-      <Image
-        {...mainPageImageProps}
-        src={mainpagebanner}
-        alt="Spellings Main Page Image"
-      ></Image>
-      <Text className={mainPageText} alignText="Center">
-        Welcome to Spellings! Click on instructions to read the instructions or
-        Click on Start Game to start the game!
-      </Text>
-      <Stack horizontal tokens={{ childrenGap: "5rem" }}>
-        <PrimaryButton text="Instructions" onClick={showModal}></PrimaryButton>
-        <Link to="/game">
-          <PrimaryButton text="Start Game"></PrimaryButton>
-        </Link>
+      <Stack vertical horizontalAlign="center">
+        <Image
+          {...mainPageImageProps}
+          src={mainpagebanner}
+          alt="Spellings Main Page Image"
+        ></Image>
+        <Text className={mainPageText} alignText="Center">
+          Welcome to Spellings! Click on instructions to read the instructions
+          or Click on Start Game to start the game!
+        </Text>
+        <Stack horizontal tokens={{ childrenGap: "5rem" }}>
+          <PrimaryButton
+            text="Instructions"
+            onClick={showModal}
+          ></PrimaryButton>
+          <Link to="/game">
+            <PrimaryButton text="Start Game"></PrimaryButton>
+          </Link>
+        </Stack>
+        <Modal
+          titleAriaId={titleId}
+          isOpen={isModalOpen}
+          onDismiss={hideModal}
+          isBlocking={false}
+          containerClassName={contentStyles.container}
+          dragOptions={dragOptions}
+        >
+          <div className={contentStyles.header}>
+            <span id={titleId}>Instructions</span>
+            <IconButton
+              styles={iconButtonStyles}
+              iconProps={cancelIcon}
+              ariaLabel="Close popup modal"
+              onClick={hideModal}
+            />
+          </div>
+          <div className={contentStyles.body}>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+              lorem nulla, malesuada ut sagittis sit amet, vulputate in leo.
+              Maecenas vulputate congue sapien eu tincidunt. Etiam eu sem
+              turpis. Fusce tempor sagittis nunc, ut interdum ipsum vestibulum
+              non. Proin dolor elit, aliquam eget tincidunt non, vestibulum ut
+              turpis. In hac habitasse platea dictumst. In a odio eget enim
+              porttitor maximus. Aliquam nulla nibh, ullamcorper aliquam
+              placerat eu, viverra et dui. Phasellus ex lectus, maximus in
+              mollis ac, luctus vel eros. Vivamus ultrices, turpis sed malesuada
+              gravida, eros ipsum venenatis elit, et volutpat eros dui et ante.
+              Quisque ultricies mi nec leo ultricies mollis. Vivamus egestas
+              volutpat lacinia. Quisque pharetra eleifend efficitur.
+            </p>
+          </div>
+        </Modal>
       </Stack>
-      <Modal
-        titleAriaId={titleId}
-        isOpen={isModalOpen}
-        onDismiss={hideModal}
-        isBlocking={false}
-        containerClassName={contentStyles.container}
-        dragOptions={dragOptions}
-      >
-        <div className={contentStyles.header}>
-          <span id={titleId}>Instructions</span>
-          <IconButton
-            styles={iconButtonStyles}
-            iconProps={cancelIcon}
-            ariaLabel="Close popup modal"
-            onClick={hideModal}
-          />
-        </div>
-        <div className={contentStyles.body}>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-            lorem nulla, malesuada ut sagittis sit amet, vulputate in leo.
-            Maecenas vulputate congue sapien eu tincidunt. Etiam eu sem turpis.
-            Fusce tempor sagittis nunc, ut interdum ipsum vestibulum non. Proin
-            dolor elit, aliquam eget tincidunt non, vestibulum ut turpis. In hac
-            habitasse platea dictumst. In a odio eget enim porttitor maximus.
-            Aliquam nulla nibh, ullamcorper aliquam placerat eu, viverra et dui.
-            Phasellus ex lectus, maximus in mollis ac, luctus vel eros. Vivamus
-            ultrices, turpis sed malesuada gravida, eros ipsum venenatis elit,
-            et volutpat eros dui et ante. Quisque ultricies mi nec leo ultricies
-            mollis. Vivamus egestas volutpat lacinia. Quisque pharetra eleifend
-            efficitur.
-          </p>
-        </div>
-      </Modal>
     </Layout>
   );
 };
@@ -129,7 +134,7 @@ const mainPageImageProps = {
 };
 
 const mainPageText = {
-  margin: "0 15rem",
+  margin: "0 15rem 4rem 15rem",
   textAlign: "center",
 };
 

@@ -10,7 +10,11 @@ initializeIcons();
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <App
+        style={{
+          minHeight: "10%",
+        }}
+      />
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")

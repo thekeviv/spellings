@@ -10,7 +10,7 @@ loadTheme({
     themeLighterAlt: "#fafdfd",
     themeLighter: "#eaf8f7",
     themeLight: "#d9f2f1",
-    themeTertiary: "#b5e5e3",
+    themeTertiary: "#005B9A",
     themeSecondary: "#96d9d6",
     themeDarkAlt: "#7cbebb",
     themeDark: "#69a19e",
