@@ -37,11 +37,7 @@ class Layout extends React.Component {
       <Layer>
         <ScrollablePane>
           {header}
-          <Stack
-            tokens={{ childrenGap: 10 }}
-            style={{ minHeight: "80%" }}
-            verticalAlign="space-around"
-          >
+          <Stack tokens={{ childrenGap: 10 }} style={{ minHeight: "80%" }}>
             {this.props.children}
           </Stack>
         </ScrollablePane>
