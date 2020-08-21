@@ -1,13 +1,36 @@
 import React, { useState } from "react";
-import { Stack, Text, PrimaryButton, getTheme } from "office-ui-fabric-react";
+import { Stack, Text, PrimaryButton } from "office-ui-fabric-react";
 import { DragDropContext } from "react-beautiful-dnd";
 import Layout from "../Components/layout";
 import GameTimer from "../Components/game-timer";
 import DraggableList from "../Components/draggable-list";
 import words from "../Data/words";
 
+function shuffle(array) {
+  let counter = array.length;
+  // While there are elements in the array
+  while (counter > 0) {
+    // Pick a random index
+    let index = Math.floor(Math.random() * counter);
+    // Decrease counter by 1
+    counter--;
+    // And swap the last element with it
+    let temp = array[counter];
+    array[counter] = array[index];
+    array[index] = temp;
+  }
+  return array;
+}
+
 const getUniqueWord = () => {
-  return words[Math.floor(Math.random() * words.length + 1)];
+  let word = words[Math.floor(Math.random() * words.length)];
+  let subWords = [
+    word.substring(0, 3),
+    word.substring(3, 5),
+    word.substring(5, 8),
+  ];
+  let shuffledWords = shuffle(subWords.slice(0));
+  return [subWords, shuffledWords];
 };
 
 const reorder = (list, startIndex, endIndex) => {
@@ -19,17 +42,32 @@ const reorder = (list, startIndex, endIndex) => {
 };
 
 const Game = () => {
-  const theme = getTheme();
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(false);
-  const [words, setWords] = useState(["ver", "whe", "ne"]);
-  const [correctWordOrder, setCorrectWordOrder] = useState([0, 1, 2]);
+  const [nonShuffledShuffledWords, setNonShuffledShuffledWords] = useState(
+    getUniqueWord()
+  );
   const onDragEnd = (result) => {
     if (!result.destination) {
       return;
     }
-    const items = reorder(words, result.source.index, result.destination.index);
-    setWords(items);
+    const items = reorder(
+      nonShuffledShuffledWords[1],
+      result.source.index,
+      result.destination.index
+    );
+    setNonShuffledShuffledWords([nonShuffledShuffledWords[0], items]);
+  };
+
+  const updateScoreAndGenerateNewWord = () => {
+    console.log(nonShuffledShuffledWords);
+    if (
+      JSON.stringify(nonShuffledShuffledWords[0]) ===
+      JSON.stringify(nonShuffledShuffledWords[1])
+    ) {
+      setScore(score + 1);
+    }
+    setNonShuffledShuffledWords(getUniqueWord());
   };
   return (
     <Layout>
@@ -50,9 +88,12 @@ const Game = () => {
       >
         <Stack style={{ display: "flex", alignItems: "center" }}>
           <DragDropContext onDragEnd={onDragEnd}>
-            <DraggableList words={words} />
+            <DraggableList words={nonShuffledShuffledWords[1]} />
           </DragDropContext>
-          <PrimaryButton text="Next Word"></PrimaryButton>
+          <PrimaryButton
+            text="Next Word"
+            onClick={updateScoreAndGenerateNewWord}
+          ></PrimaryButton>
         </Stack>
       </Stack>
       <Stack horizontal horizontalAlign="center" style={{ marginTop: "1em" }}>
