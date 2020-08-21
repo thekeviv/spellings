@@ -16,7 +16,12 @@ const DraggableList = (props) => {
           }}
         >
           {props.words.map((item, index) => (
-            <DraggableWord key={item} text={item} index={index} />
+            <DraggableWord
+              key={item}
+              text={item}
+              index={index}
+              disableDrag={props.disableDrag}
+            />
           ))}
           {provided.placeholder}
         </div>

@@ -108,20 +108,36 @@ const Main = () => {
             />
           </div>
           <div className={contentStyles.body}>
+            <h5>
+              <em>Spellings by Vivek Sharma</em>
+            </h5>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-              lorem nulla, malesuada ut sagittis sit amet, vulputate in leo.
-              Maecenas vulputate congue sapien eu tincidunt. Etiam eu sem
-              turpis. Fusce tempor sagittis nunc, ut interdum ipsum vestibulum
-              non. Proin dolor elit, aliquam eget tincidunt non, vestibulum ut
-              turpis. In hac habitasse platea dictumst. In a odio eget enim
-              porttitor maximus. Aliquam nulla nibh, ullamcorper aliquam
-              placerat eu, viverra et dui. Phasellus ex lectus, maximus in
-              mollis ac, luctus vel eros. Vivamus ultrices, turpis sed malesuada
-              gravida, eros ipsum venenatis elit, et volutpat eros dui et ante.
-              Quisque ultricies mi nec leo ultricies mollis. Vivamus egestas
-              volutpat lacinia. Quisque pharetra eleifend efficitur.
+              Spellings is a simple game to teach you spellings of commonly
+              occuring words
             </p>
+            <h5>Instructions</h5>
+            <ul>
+              <li>Clicking on Start Game will start the game.</li>
+              <li>
+                The game has a timer which starts on clicking Start Game. The
+                Timer is shown on the upper right corner
+              </li>
+              <li>
+                You will see a dropdown pane in the middle of the screen. It
+                will have 3 sub words in it arranged randomly.
+              </li>
+              <li>
+                Arrange them in the correct order using drag and drop. If you
+                are using touch, you'll need to hold a sub-word before dragging
+                it.
+              </li>
+              <li>Once you think the order is correct, click next word.</li>
+              <li>
+                Your score is shown in the top left. Click View Results to view
+                a chart of how many spellings you got right and howmany you got
+                wrong.
+              </li>
+            </ul>
           </div>
         </Modal>
       </Stack>

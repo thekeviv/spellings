@@ -3,7 +3,12 @@ import { Draggable } from "react-beautiful-dnd";
 
 const DraggableWord = (props) => {
   return (
-    <Draggable key={props.text} draggableId={props.text} index={props.index}>
+    <Draggable
+      key={props.text}
+      draggableId={props.text}
+      index={props.index}
+      isDragDisabled={props.disableDrag}
+    >
       {(provided, snapshot) => (
         <div
           ref={provided.innerRef}

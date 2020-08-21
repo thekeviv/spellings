@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Stack, Text, PrimaryButton } from "office-ui-fabric-react";
 import { DragDropContext } from "react-beautiful-dnd";
+import { Link } from "react-router-dom";
 import Layout from "../Components/layout";
 import GameTimer from "../Components/game-timer";
 import DraggableList from "../Components/draggable-list";
@@ -40,13 +41,20 @@ const reorder = (list, startIndex, endIndex) => {
 
   return result;
 };
-
+let correctAnswers = 0;
+let incorrectAnswers = 0;
 const Game = () => {
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const [nonShuffledShuffledWords, setNonShuffledShuffledWords] = useState(
     getUniqueWord()
   );
+  const getResultsPathName = () => {
+    const string = gameOver
+      ? "results/" + correctAnswers + "/" + incorrectAnswers
+      : "";
+    return string;
+  };
   const onDragEnd = (result) => {
     if (!result.destination) {
       return;
@@ -60,12 +68,14 @@ const Game = () => {
   };
 
   const updateScoreAndGenerateNewWord = () => {
-    console.log(nonShuffledShuffledWords);
     if (
       JSON.stringify(nonShuffledShuffledWords[0]) ===
       JSON.stringify(nonShuffledShuffledWords[1])
     ) {
       setScore(score + 1);
+      correctAnswers++;
+    } else {
+      incorrectAnswers++;
     }
     setNonShuffledShuffledWords(getUniqueWord());
   };
@@ -79,7 +89,7 @@ const Game = () => {
         <Text variant="xxLargePlus" style={{ fontSize: "2rem" }}>
           Your Score: {score}
         </Text>
-        <GameTimer initialTimerValue="10" setGameOver={setGameOver}></GameTimer>
+        <GameTimer initialTimerValue="60" setGameOver={setGameOver}></GameTimer>
       </Stack>
       <Stack
         horizontal
@@ -88,17 +98,34 @@ const Game = () => {
       >
         <Stack style={{ display: "flex", alignItems: "center" }}>
           <DragDropContext onDragEnd={onDragEnd}>
-            <DraggableList words={nonShuffledShuffledWords[1]} />
+            <DraggableList
+              words={nonShuffledShuffledWords[1]}
+              disableDrag={gameOver}
+            />
           </DragDropContext>
           <PrimaryButton
             text="Next Word"
             onClick={updateScoreAndGenerateNewWord}
+            disabled={gameOver}
           ></PrimaryButton>
+
+          <Link
+            to={{
+              pathname: getResultsPathName(),
+            }}
+          >
+            <PrimaryButton
+              text="View Results"
+              disabled={!gameOver}
+              style={{ marginTop: "10px" }}
+            />
+          </Link>
         </Stack>
       </Stack>
       <Stack horizontal horizontalAlign="center" style={{ marginTop: "1em" }}>
         <Text style={{ textAlign: "center" }}>
-          Reorder the Sub-Words to form a Meaningful English Word{" "}
+          Reorder the Sub-words by Dragging Each Box Up or Down to Form a
+          Complete English Word{" "}
         </Text>
       </Stack>
     </Layout>

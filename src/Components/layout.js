@@ -7,8 +7,8 @@ import {
   ScrollablePane,
   Text,
 } from "office-ui-fabric-react";
-import { Icon } from "office-ui-fabric-react/lib/Icon";
-import { Layer } from "office-ui-fabric-react/lib/Layer";
+import { Link } from "react-router-dom";
+import { Icon, Layer } from "office-ui-fabric-react/";
 
 class Layout extends React.Component {
   constructor(props) {
@@ -29,8 +29,16 @@ class Layout extends React.Component {
   render() {
     var header = (
       <div className={this.contentClass}>
-        <Icon iconName="TextBox" style={{ color: getTheme().palette.white }} />
-        <Text variant="xxLarge">{"  Spellings! "}</Text>
+        <Link
+          to="/"
+          style={{ textDecoration: "none", color: getTheme().palette.white }}
+        >
+          <Icon
+            iconName="TextBox"
+            style={{ color: getTheme().palette.white }}
+          />
+          <Text variant="xxLarge">{"  Spellings! "}</Text>
+        </Link>
       </div>
     );
     return (

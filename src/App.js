@@ -3,6 +3,7 @@ import { loadTheme } from "office-ui-fabric-react";
 import { Route } from "react-router-dom";
 import Main from "./Pages/main";
 import Game from "./Pages/game";
+import Results from "./Pages/results";
 
 loadTheme({
   palette: {
@@ -38,8 +39,12 @@ class App extends React.Component {
   render() {
     return (
       <div className="app">
-        <Route path="/game" render={() => <Game />} />
-        <Route exact path="/" render={() => <Main />} />
+        <Route path="/" exact component={Main} />
+        <Route path="/game" component={Game} />
+        <Route
+          path="/results/:correctAnswers/:incorrectAnswers"
+          component={Results}
+        />
       </div>
     );
   }
